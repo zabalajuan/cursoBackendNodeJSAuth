@@ -1,0 +1,44 @@
+Clase 3 - Instalación proyecto
+  Lo primero es clonar el repositorio
+    configurar mi repositorio github
+
+  Instalar las dependencias
+    npm i
+  Creamos nuestras propias variables de entorno
+    .env
+      PORT
+      DATABASE_URL
+  Lo siguiente es crear la carpeta para el volumen, la carpeta local donde estara la base de datos
+    postgress_data
+
+  ahora si levantamos el servicio/docker
+    docker-compose up -d postgres
+    docker-compose up -d pgadmin
+
+  Una vez levantados los servicios, podemos validar su estado con
+    docker-compose up -d ps
+
+    Entramos al navegador
+      localhost:5050
+    nos loggeamos
+    Es necesario conectar la base de datos
+      Object > create > Server group
+      Add new server
+        es necesario obtener la IP de nuestro contenedor
+          primero busco el id del contenedor
+            docker ps
+              identifico el id del contenedor y lo inspeccionamos
+                docker inspect {id_del contenedor}
+                  identificamos la IP en la que corre
+
+                  ingresamos los datos en la interfaz grafica para que la conexion quede lista
+
+  Para generar los schemas, es necesario correr la primera migration
+    npm run migrations:run
+
+
+  Una vez hechas la smigraciones, vamos a correr en desarrollo y probar endpoints
+    npm run dev
+
+  En insomnia podemos tener varios ambientes para probar los endpoints
+    _API_URL
