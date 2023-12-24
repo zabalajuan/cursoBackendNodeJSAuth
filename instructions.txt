@@ -9,7 +9,7 @@ Clase 3 - Instalación proyecto
       PORT
       DATABASE_URL
   Lo siguiente es crear la carpeta para el volumen, la carpeta local donde estara la base de datos
-    postgress_data
+    postgres_data
 
   ahora si levantamos el servicio/docker
     docker-compose up -d postgres
