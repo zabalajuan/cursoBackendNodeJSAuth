@@ -42,3 +42,11 @@ Clase 3 - Instalación proyecto
 
   En insomnia podemos tener varios ambientes para probar los endpoints
     _API_URL
+
+Clase 4 - Middleware de verificación
+  creamos el archivo auth.handler.js con el middleware de autorizacion
+    lo probaremos con el endpoint 'nuevaRuta'
+  
+  Como la API_KEY no debería quedar por ahí en el código, la paasaremos como una variable de ambiente, modificando
+    .env 
+      config.js
