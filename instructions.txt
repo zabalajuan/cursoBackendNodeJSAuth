@@ -55,3 +55,6 @@ CLase 5 - Hashing de contraseñas con bcryptjs
   es necesario instalar la libreria bcrypt
     npm i bcrypt
       creamos el archivo pass-hash.js
+      creamos el archivo pass-verify.js
+      
+Clase 6 - Implementando hashing para usuarios

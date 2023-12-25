@@ -1,4 +1,7 @@
 const boom = require('@hapi/boom');
+
+const bcrypt = require('bcrypt');
+
 const { models } = require('../libs/sequelize');
 
 class CustomerService {
@@ -21,7 +24,17 @@ class CustomerService {
   }
 
   async create(data) {
-    const newCustomer = await models.Customer.create(data, {
+    const hash = await bcrypt.hash(data.user.password, 10);
+    //ahora vamos a hacer una clonación de data, con el password como hash
+    const newData = {
+      ...data,
+      user:{ //también clonamos la informacion del usuario
+        ...data.user,
+        password: hash  //solo etsamos cambiando el hash
+      }
+
+    }
+    const newCustomer = await models.Customer.create(newData, {
       include: ['user']
     });
     return newCustomer;

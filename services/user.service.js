@@ -1,12 +1,25 @@
 const boom = require('@hapi/boom');
 
+const bcrypt = require('bcrypt');
+
 const { models } = require('./../libs/sequelize');
 
 class UserService {
   constructor() {}
 
   async create(data) {
-    const newUser = await models.User.create(data);
+    const hash = await bcrypt.hash(data.password, 10);
+    // const newUser = await models.User.create(data);
+    //vamos a crear el usuario con el password pero como hash, entonces reasignamos los datos
+    const newUser = await models.User.create({
+      ...data,
+      password: hash
+    });
+    //es importante no retornar el hash/password como resultado del query
+    //opcion 1
+    // delete newUser.password;
+    //como estamos usando sequelize(ORM), debe ser
+    delete newUser.dataValues.password;
     return newUser;
   }
 
