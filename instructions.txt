@@ -87,3 +87,14 @@ Clase 10 - Generar JWT en el servicio
     y se ajusta el respectivo archivo config con las variables de ambiente
 
     Para generar los secretos, hay una pagina Keygen.io
+
+Clase 11 - Protección de rutas
+  Para proteger las rutas, tenemos que usar la estrategia jwt de passport
+    npm install passport-jwt
+    creamos la estrategia en el utils => jwt.strategy.js
+      y la agregamos al index.js de estrategias
+        ya con esto podríamos porteger los endpoints
+          Haremos el ejemplo con las categorias por ejemplo
+        
+        Para probar en insomina, enviamos la autenticacion como bearertoken
+
