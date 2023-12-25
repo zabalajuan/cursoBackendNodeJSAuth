@@ -50,3 +50,8 @@ Clase 4 - Middleware de verificación
   Como la API_KEY no debería quedar por ahí en el código, la paasaremos como una variable de ambiente, modificando
     .env 
       config.js
+
+CLase 5 - Hashing de contraseñas con bcryptjs
+  es necesario instalar la libreria bcrypt
+    npm i bcrypt
+      creamos el archivo pass-hash.js
