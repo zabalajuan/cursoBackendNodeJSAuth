@@ -73,4 +73,9 @@ Clase 7 - Implementando Login con Passport.js
 
     Importante modificar el index.js general para que use passport y la estrategia local
 
-
+Clase 8-9 - Jason web tokens - Firmar y verificar
+  Siguiendo las recomendacions de la documentacion de JWT, usaremos la libreria para node
+    npm install jsonwebtoken
+      un token esta compuesto por tres partes:
+        header.payload.firma
+      En el payload no debe ir información sensible, porque esta informacion es publica
