@@ -3,21 +3,28 @@ const passport = require('passport');
 
 const CategoryService = require('./../services/category.service');
 const validatorHandler = require('./../middlewares/validator.handler');
+const { checkRoles } = require('./../middlewares/auth.handler');
 const { createCategorySchema, updateCategorySchema, getCategorySchema } = require('./../schemas/category.schema');
 
 const router = express.Router();
 const service = new CategoryService();
 
-router.get('/', async (req, res, next) => {
-  try {
-    const categories = await service.find();
-    res.json(categories);
-  } catch (error) {
-    next(error);
-  }
+router.get('/', 
+  //este endpoint tranquilamente podría ser public, sin necesidad de login
+  passport.authenticate('jwt', {session: false}),
+  checkRoles('admin','seller', 'customer'),
+    async (req, res, next) => {
+      try {
+        const categories = await service.find();
+        res.json(categories);
+      } catch (error) {
+        next(error);
+      }
 });
 
 router.get('/:id',
+  passport.authenticate('jwt', {session: false}),
+  checkRoles('admin','seller', 'customer'),
   validatorHandler(getCategorySchema, 'params'),
   async (req, res, next) => {
     try {
@@ -32,6 +39,8 @@ router.get('/:id',
 
 router.post('/',
   passport.authenticate('jwt', {session: false}), //validamos si el usuario tiene un token valido
+  //middleware 2 - revisa la capa de gestion d epermisos
+  checkRoles('admin'), //closure => function que retorna otra function
   validatorHandler(createCategorySchema, 'body'),
   async (req, res, next) => {
     try {
@@ -45,6 +54,8 @@ router.post('/',
 );
 
 router.patch('/:id',
+  passport.authenticate('jwt', {session: false}),
+  checkRoles('admin', 'seller'),
   validatorHandler(getCategorySchema, 'params'),
   validatorHandler(updateCategorySchema, 'body'),
   async (req, res, next) => {
@@ -60,6 +71,8 @@ router.patch('/:id',
 );
 
 router.delete('/:id',
+  passport.authenticate('jwt', {session: false}),
+  checkRoles('admin', 'seller'),
   validatorHandler(getCategorySchema, 'params'),
   async (req, res, next) => {
     try {

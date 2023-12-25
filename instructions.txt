@@ -98,3 +98,13 @@ Clase 11 - Protección de rutas
         
         Para probar en insomina, enviamos la autenticacion como bearertoken
 
+
+Clase 12 - Control de roles
+  Vamos a modificar nuestro authentification handler
+    creamos un validador/middleware que podemos agregar a los endpoints para validar si el 
+    usuario tiene los permisos o no para X operación, como crear una categoria
+
+    Para tener un validador de roles, vamos a usar la caracteristica de javascript, 
+      Closures
+
+  Hay una libreria AccessControl para d eforma explicita manejar permisos de roles
