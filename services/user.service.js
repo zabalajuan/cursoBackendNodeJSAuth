@@ -30,6 +30,13 @@ class UserService {
     return rta;
   }
 
+  async findByEmail(email) {
+    const rta = await models.User.findOne({
+      where: {email}  //dado que el email es un campo unico, nos traera el primer usuario con este email
+    });
+    return rta;
+  }
+
   async findOne(id) {
     const user = await models.User.findByPk(id);
     if (!user) {

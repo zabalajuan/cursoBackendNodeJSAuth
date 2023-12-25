@@ -5,6 +5,8 @@ const {checkApiKey} = require('./middlewares/auth.handler');
 
 const { logErrors, errorHandler, boomErrorHandler, ormErrorHandler } = require('./middlewares/error.handler');
 
+// const passport = require('passport');
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -21,6 +23,10 @@ const options = {
   }
 }
 app.use(cors(options));
+
+//de esta forma ejecuta el index.js con el passport
+require('./utils/auth');
+// app.use(passport.initialize())
 
 app.get('/', (req, res) => {
   res.send('Hola mi server en express');

@@ -58,3 +58,19 @@ CLase 5 - Hashing de contraseñas con bcryptjs
       creamos el archivo pass-verify.js
       
 Clase 6 - Implementando hashing para usuarios
+  modificacmos el servicio de usuarios y customers para hacer el hash de la contraseñas
+
+Clase 7 - Implementando Login con Passport.js
+  Passport.js da versatilidad para tener diferentes estrategias de login, como github, facebook, etc
+    Passport local - es la primera estrategia que usaremos
+      npm i passport passport-local
+
+      vamos a generar la estructura en la carpeta utils
+        en el index.js es donde vamos a definir las estrategias que vamos a usar para login
+      Modificamos nuestro servicio de usuario para buscar por email
+
+    Una vez implementada la logica de la estrategia d elogin, es necesario llevarla al routing
+
+    Importante modificar el index.js general para que use passport y la estrategia local
+
+
