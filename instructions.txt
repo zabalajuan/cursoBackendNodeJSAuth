@@ -79,3 +79,11 @@ Clase 8-9 - Jason web tokens - Firmar y verificar
       un token esta compuesto por tres partes:
         header.payload.firma
       En el payload no debe ir información sensible, porque esta informacion es publica
+
+Clase 10 - Generar JWT en el servicio
+  Una vez hemos verificado al usuario, se ha loggeado correctamente, podemos generarle el token
+  Modificaremos el auth.router.js
+  El secreto lo guardamos como una variable de ambiente en el .env
+    y se ajusta el respectivo archivo config con las variables de ambiente
+
+    Para generar los secretos, hay una pagina Keygen.io
