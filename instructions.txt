@@ -108,3 +108,8 @@ Clase 12 - Control de roles
       Closures
 
   Hay una libreria AccessControl para d eforma explicita manejar permisos de roles
+
+Clase 13 - Obteniendo ordenes del perfil
+  se manejará con la autenticación que ya hizo el usuario
+    profile.router.js
+  Creamos el endpoint para obtener las ordenes a partir de la sesion del usuario
