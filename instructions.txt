@@ -113,3 +113,23 @@ Clase 13 - Obteniendo ordenes del perfil
   se manejará con la autenticación que ya hizo el usuario
     profile.router.js
   Creamos el endpoint para obtener las ordenes a partir de la sesion del usuario
+
+CLase 14 - Manejo de la autenticación desde el cliente (Browser / app)
+  El token deberíamos almacenarlo en el localStorage o en una Cookie
+  En cada request se debería usar el token, enviarla
+    Hay unas librerías que permiten interceptar cada petición y agregarle el token
+  El token debería tener expiración - 15-20 minutos
+    la API también nos da un refresh token, cada vez que se vence el token, el frontend renueva el token usando ese refresh token
+
+Clase 15 - Envío correos con NodeMail - NodeMailer
+
+  Para esto usaremos la libreria NodeMailer
+    npm install nodemailer
+
+      esta libreria crea una cuenta para testear correos
+        Debemos entrar a la pagina ethereal.email para crear el usuario de prueba
+          Creamos la cuenta y nos copiamos la información del Transporter
+
+      Por último, hicimos la prueba usando el correo gmail, su servidor smtp
+        Generando una clave en la cuenta gmail para third party apps
+        
