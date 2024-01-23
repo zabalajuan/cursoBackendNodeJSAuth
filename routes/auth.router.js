@@ -2,11 +2,14 @@ const express = require('express');
 
 const passport = require('passport');
 
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 
-const {config} = require( './../config/config');
+// const {config} = require( './../config/config');
+
+const AuthService = require('./../services/auth.service');
 
 const router = express.Router();
+const service = new AuthService();
 
 router.post('/login',
   //middleware 1
@@ -15,22 +18,43 @@ router.post('/login',
   //middleware 2
   async (req, res, next) => {
     try {
-      const user = req.user; //adquirimos los datos del usuario que se verificó
-      const payload = {
-        sub: user.id,
-        role: user.role
-      }
+      // const user = req.user; //adquirimos los datos del usuario que se verificó
+      // const payload = {
+      //   sub: user.id,
+      //   role: user.role
+      // }
 
 
-      const token = jwt.sign(payload, config.jwtSecret); 
-      res.json({
-        user,
-        token
-      });
+      // const token = jwt.sign(payload, config.jwtSecret); 
+      // res.json({
+      //   user,
+      //   token
+      // });
+
+      const user = req.user;
+      res.json(service.signToken(user));
+
     } catch (error) {
       next(error);
     }
   }
 );
+
+router.post('/recovery',
+  
+
+//middleware 1
+  async (req, res, next) => {
+    try {
+      const {email} = req.body; //adquirimos los datos del usuario, el correo en este caso
+      const rta = await service.sendMail(email);
+      res.json(rta);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+
 
 module.exports = router;

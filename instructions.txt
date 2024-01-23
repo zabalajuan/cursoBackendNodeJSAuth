@@ -16,7 +16,7 @@ Clase 3 - Instalación proyecto
     docker-compose up -d pgadmin
 
   Una vez levantados los servicios, podemos validar su estado con
-    docker-compose up -d ps
+    docker-compose ps
 
     Entramos al navegador
       localhost:5050
@@ -132,4 +132,10 @@ Clase 15 - Envío correos con NodeMail - NodeMailer
 
       Por último, hicimos la prueba usando el correo gmail, su servidor smtp
         Generando una clave en la cuenta gmail para third party apps
-        
+
+Clase 16 - Implementando el envío de emails
+  Vamos a implementar el servicio de recuperar contraseña
+    Modificamos el auth.router.js
+
+    Dado que la logica de autenticacion y login esta un poco regada, crearemos un servicio
+      auth.service.js

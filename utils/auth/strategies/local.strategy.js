@@ -4,10 +4,10 @@ const boom = require('@hapi/boom');
 
 const bcrypt = require('bcrypt');
 
-const UserService = require('./../../../services/user.service');
+const AuthService = require('./../../../services/auth.service');
 
 //para utilizar el servicio, creamos una instancia del mismo
-const service = new UserService();
+const service = new AuthService();
 
 //generamos una instancia d ela estrategia usando el metodo constructor
 //lo que nos retorna esta estrategia son esos 3 parametros
@@ -18,18 +18,22 @@ const LocalStrategy =  new Strategy({
     },  
     async (email, password, done) =>{
         try{
-            const user = await service.findByEmail(email);  //en este caso el usernae es el email
-            if (!user) {
-                done(boom.unauthorized(), false)    //asi enviamos el error si no encontramos un usuario
-            }
-            //si si encontró el usuario, tenemos el usuario pero con hash
-            const isMatch = await bcrypt.compare(password, user.password);
-            if(!isMatch){
-                // si la contraseña no coincide
-                done(boom.unauthorized(), false) 
-            }
-            //si todo salió bien
-            delete user.dataValues.password;
+            // const user = await service.findByEmail(email);  //en este caso el usernae es el email
+            // if (!user) {
+            //     done(boom.unauthorized(), false)    //asi enviamos el error si no encontramos un usuario
+            // }
+            // //si si encontró el usuario, tenemos el usuario pero con hash
+            // const isMatch = await bcrypt.compare(password, user.password);
+            // if(!isMatch){
+            //     // si la contraseña no coincide
+            //     done(boom.unauthorized(), false) 
+            // }
+            // //si todo salió bien
+            // delete user.dataValues.password;
+            
+            //al cambiar la logica, incluyendo el servicio de autenticacion, nos queda asi
+            const user = await service.getUser(email, password);
+            
             done(null, user);
         
         }catch(error){
