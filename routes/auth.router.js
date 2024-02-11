@@ -47,7 +47,7 @@ router.post('/recovery',
   async (req, res, next) => {
     try {
       const {email} = req.body; //adquirimos los datos del usuario, el correo en este caso
-      const rta = await service.sendMail(email);
+      const rta = await service.sendRecovery(email);
       res.json(rta);
     } catch (error) {
       next(error);
@@ -55,6 +55,18 @@ router.post('/recovery',
   }
 );
 
-
+router.post('/change-password',
+//middleware 1
+  async (req, res, next) => {
+    //deberamos tener una capa para la validacin de los datos
+    try {
+      const {token, newPassword} = req.body; //adquirimos los datos del usuario, el correo en este caso
+      const rta = await service.changePassword(token, newPassword);
+      res.json(rta);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 module.exports = router;

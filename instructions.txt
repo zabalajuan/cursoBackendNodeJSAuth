@@ -139,3 +139,9 @@ Clase 16 - Implementando el envío de emails
 
     Dado que la logica de autenticacion y login esta un poco regada, crearemos un servicio
       auth.service.js
+
+Clase 17 - Recuperación con links
+  Es necesario generar un token con jwt para crear el link
+
+  Vamos a correr una nueva migracion en la base de datos, para poder guardar el token, 
+  como estamos modificando la base de datos, por eso hacemos la migracion
